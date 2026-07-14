@@ -7,7 +7,7 @@ vim.pack.add {
   'https://github.com/MunifTanjim/nui.nvim',
 }
 
-vim.keymap.set('n', '\\', '<Cmd>Neotree reveal<CR>', { desc = 'NeoTree reveal', silent = true })
+vim.keymap.set('n', '<leader>ee', '<cmd>Neotree toggle<CR>', { desc = '[E]xplore File Tr[e]e', silent = true })
 
 require('neo-tree').setup {
   filesystem = {
@@ -18,7 +18,7 @@ require('neo-tree').setup {
     },
     window = {
       mappings = {
-        ['\\'] = 'close_window',
+        ['<leader>ee'] = 'close_window',
       },
     },
   },
