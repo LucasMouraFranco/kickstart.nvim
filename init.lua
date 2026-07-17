@@ -693,7 +693,17 @@ do
   local servers = {
     -- clangd = {},
     -- gopls = {},
-    pyright = {},
+    pyright = {
+      before_init = function(_, config)
+        local python_path = config.root_dir .. '/.venv/bin/python'
+        if vim.uv.fs_stat(python_path) then
+          config.settings.python.pythonPath = python_path
+        end
+      end,
+      settings = {
+        python = {},
+      },
+    },
     -- rust_analyzer = {},
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
