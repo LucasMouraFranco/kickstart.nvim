@@ -778,6 +778,9 @@ do
     vim.lsp.config(name, server)
     vim.lsp.enable(name)
   end
+
+  -- dartls ships with the Dart SDK, so Mason does not install it.
+  vim.lsp.enable 'dartls'
 end
 
 -- ============================================================
