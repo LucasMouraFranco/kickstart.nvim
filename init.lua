@@ -703,10 +703,10 @@ do
     -- gopls = {},
     pyright = {
       before_init = function(_, config)
-        local python_path = config.root_dir .. '/.venv/bin/python'
-        if vim.uv.fs_stat(python_path) then
-          config.settings.python.pythonPath = python_path
-        end
+        if not config.root_dir then return end
+
+        local python_path = vim.fs.joinpath(config.root_dir, '.venv', 'bin', 'python')
+        if vim.uv.fs_stat(python_path) then config.settings.python.pythonPath = python_path end
       end,
       settings = {
         python = {},
