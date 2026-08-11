@@ -9,6 +9,13 @@ vim.pack.add {
 
 vim.keymap.set('n', '<leader>ee', '<cmd>Neotree toggle<CR>', { desc = '[E]xplore File Tr[e]e', silent = true })
 
+local function toggle_filter(state, flag)
+  local f = state.filtered_items
+  f[flag] = not f[flag]
+  f.visible = not f.hide_dotfiles and not f.hide_gitignored
+  require('neo-tree.sources.filesystem.commands').refresh(state)
+end
+
 require('neo-tree').setup {
   filesystem = {
     filtered_items = {
@@ -19,6 +26,12 @@ require('neo-tree').setup {
     window = {
       mappings = {
         ['<leader>ee'] = 'close_window',
+        ['H'] = function(state)
+          toggle_filter(state, 'hide_dotfiles')
+        end,
+        ['G'] = function(state)
+          toggle_filter(state, 'hide_gitignored')
+        end,
       },
     },
   },
