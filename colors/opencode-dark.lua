@@ -3,11 +3,11 @@
 local p = {
   bg = '#0a0a0a',
   panel = '#141414',
-  raised = '#1e1e1e',
-  selection = '#323232',
-  border = '#484848',
-  muted = '#808080',
-  subtext = '#b5b5b5',
+  raised = '#282828',
+  selection = '#3c3c3c',
+  border = '#808080',
+  muted = '#a6a6a6',
+  subtext = '#c6c6c6',
   text = '#eeeeee',
   peach = '#fab283',
   purple = '#9d7cd8',
@@ -32,7 +32,7 @@ require('tokyonight').setup {
       bg_dark = p.panel,
       bg_dark1 = p.bg,
       bg_float = p.panel,
-      bg_highlight = p.panel,
+      bg_highlight = p.raised,
       bg_popup = p.panel,
       bg_sidebar = p.panel,
       bg_statusline = p.panel,
@@ -133,9 +133,20 @@ require('tokyonight').setup {
       h[name] = { fg = p.bg, bg = p.white }
     end
     h.CursorLineNr = { fg = p.peach, bold = true }
-    h.PmenuSel = { fg = p.text, bg = p.selection }
+    h.PmenuSel = { fg = p.text, bg = p.selection, bold = true }
+    h.Visual = { fg = p.text, bg = p.selection }
     h.Search = { fg = p.text, bg = p.selection }
     h.IncSearch = { fg = p.bg, bg = p.peach }
+    h.StatusLine = { fg = p.text, bg = p.raised }
+    h.StatusLineNC = { fg = p.muted, bg = p.panel }
+    h.MatchParen = { fg = p.white, bg = p.selection, bold = true }
+    h.Folded = { fg = p.subtext, bg = p.raised }
+    h.LspInlayHint = { fg = p.muted, bg = p.panel }
+    -- Tokyo Night uses the gutter color as a reference background; our brighter
+    -- line numbers need a separate dark fill to preserve syntax text contrast.
+    for _, name in ipairs { 'LspReferenceText', 'LspReferenceRead', 'LspReferenceWrite' } do
+      h[name] = { fg = p.text, bg = p.selection }
+    end
   end,
 }
 
