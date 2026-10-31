@@ -379,30 +379,10 @@ do
   }
 
   -- [[ Colorscheme ]]
-  -- You can easily change to a different colorscheme.
-  -- Change the name of the colorscheme plugin below, and then
-  -- change the command under that to load whatever the name of that colorscheme is.
-  --
-  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  -- Reuse Tokyo Night's plugin highlights with the shared OpenCode palette.
+  -- See colors/opencode-dark.lua; use :Telescope colorscheme to try others.
   vim.pack.add { gh 'folke/tokyonight.nvim' }
-  ---@diagnostic disable-next-line: missing-fields
-  require('tokyonight').setup {
-    styles = { comments = { italic = false } },
-    on_colors = function(c)
-      c.bg = '#1e1e2e'
-      c.bg_dark = '#1e1e2e'
-      c.bg_float = '#1e1e2e'
-      c.bg_highlight = '#1e1e2e'
-      c.bg_popup = '#1e1e2e'
-      c.bg_sidebar = '#1e1e2e'
-      c.bg_statusline = '#1e1e2e'
-    end,
-  }
-
-  -- Load the colorscheme here.
-  -- Like many other themes, this one has different styles, and you could load
-  -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme 'tokyonight-night'
+  vim.cmd.colorscheme 'opencode-dark'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
